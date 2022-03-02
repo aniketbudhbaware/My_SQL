@@ -1,0 +1,246 @@
+CREATE DATABASE employeedb;  
+show databases;
+use employeedb;
+
+# drop database employeedb; 
+
+CREATE TABLE employee_table(  
+    id int NOT NULL AUTO_INCREMENT,  
+    name varchar(45) NOT NULL,  
+    occupation varchar(35) NOT NULL,  
+    age int NOT NULL,  
+    PRIMARY KEY (id)  
+);  
+
+CREATE TABLE employee_table(  
+    id int AUTO_INCREMENT PRIMARY KEY,  
+    name varchar(45) NOT NULL,  
+    occupation varchar(35) NOT NULL,  
+    age int NOT NULL  
+); 
+
+show tables;
+
+describe employee_table;
+
+desc employee_table;
+
+-- drop table employee_table;
+CREATE TABLE customer_table(  
+    cus_id int AUTO_INCREMENT PRIMARY KEY,  
+    cus_name varchar(45) NOT NULL,  
+    cus_lastname varchar(35) NOT NULL,  
+    cus_age int NOT NULL  
+); 
+ 
+ 
+ALTER TABLE employee_table  
+ADD lastname varchar(40) NOT NULL;  
+ 
+desc cus_table;
+ 
+ 
+ALTER TABLE customer_table
+ADD cus_address varchar(100) NOT NULL  
+AFTER cus_lastname,  
+ADD cus_salary int(100) NOT NULL  
+AFTER cus_age;  
+ 
+ALTER TABLE customer_table  
+MODIFY cus_lastname varchar(40) NULL;
+
+ALTER TABLE customer_table 
+DROP COLUMN cus_address;  
+
+ALTER TABLE customer_table  
+RENAME TO cus_table;  
+
+CREATE TABLE customer (    
+    Id int PRIMARY KEY NOT NULL,     
+    Name varchar(45) NOT NULL,     
+    Product varchar(45) DEFAULT NULL,     
+    Country varchar(25) DEFAULT NULL,     
+    Year int NOT NULL    
+);   
+
+INSERT INTO customer ( Id, Name, Product, Country, Year)     
+VALUES (1, 'Stephen', 'Computer', 'USA', 2015),     
+(2, 'Joseph', 'Laptop', 'India', 2016),     
+(3, 'John', 'TV', 'USA', 2016),    
+(4, 'Donald', 'Laptop', 'England', 2015),    
+(5, 'Joseph', 'Mobile', 'India', 2015),    
+(6, 'Peter', 'Mouse', 'England', 2016);  
+
+select * from customer;
+
+desc customer;
+truncate table customer;
+drop table customer;
+
+
+CREATE TABLE Persons (  
+    ID int NOT NULL,  
+    Name varchar(45) NOT NULL,  
+    Age int CHECK (Age>=18)  
+);  
+
+
+INSERT INTO Persons(Id, Name, Age)   
+VALUES (1,'Robert', 28), (2, 'Joseph', 35), (3, 'Peter', 40);  
+
+
+INSERT INTO Persons(Id, Name, Age) VALUES (4,'Smith', 15);  
+
+
+select * from Persons;
+CREATE TABLE Persons (  
+    ID int NOT NULL,  
+    Name varchar(45) NOT NULL,  
+    Age int,  
+    City varchar(25) DEFAULT 'New York'  
+); 
+
+INSERT INTO Persons(Id, Name, Age, City)   
+VALUES (1,'Robert', 15, 'Florida'),   
+(2, 'Joseph', 35, 'California'),   
+(3, 'Peter', 40, 'Alaska');  
+
+select * from Persons;
+
+INSERT INTO Persons(Id, Name, Age) VALUES (1,'Brayan', 15); 
+
+--------------------------------------------------------------------------------------------------------
+
+CREATE TABLE Persons (ID int NOT NULL, 
+Name varchar(45) NOT NULL,  
+    
+Age int CHECK (Age>=18)  
+
+);  
+
+INSERT INTO Persons(Id, Name, Age)   
+
+VALUES (1,'Robert', 28), (2, 'Joseph', 35), (3, 'Peter', 40);
+
+select * from Persons;
+
+INSERT INTO Persons(Id, Name, Age) VALUES (4,'Smith', 18); 
+
+
+CREATE TABLE Person (ID int NOT NULL,  
+   
+ Name varchar(45) NOT NULL,  
+   
+ Age int,  
+    
+ City varchar(25) DEFAULT 'New York'  
+
+); 
+
+
+INSERT INTO Person(Id, Name, Age, City)   
+
+VALUES (1,'Robert', 15, 'Florida'),   
+
+(2, 'Joseph', 35, 'California'),   
+
+(3, 'Peter', 40, 'Alaska'); 
+
+select * from Person;
+
+INSERT INTO Person(Id, Name, Age) VALUES (1,'Brayan', 15); 
+
+INSERT INTO Person(Id, Name) VALUES (4,'sammy'); 
+
+INSERT INTO Person(Id, Name, city) VALUES (5,'samm',''); 
+
+
+CREATE TABLE Shirts ( id INT PRIMARY KEY AUTO_INCREMENT,     
+ 
+ name VARCHAR(35),     
+    
+ size ENUM('small', 'medium', 'large', 'x-large')  
+ 
+);  
+
+
+select * from Shirts;
+
+ 
+
+INSERT INTO Shirts(id, name, size)    
+
+VALUES (1,'t-shirt', 'medium'),     
+
+(2, 'casual-shirt', 'small'),     
+(3, 'formal-shirt', 'large'); 
+
+INSERT INTO Shirts(id, name, size)    
+VALUES (5,'t-shirt', 'medium');  
+
+
+CREATE TABLE Persons2 (Person_ID int PRIMARY KEY,   
+   
+Name varchar(45) NOT NULL,   
+    
+Age int,   
+   
+City varchar(25)  
+
+); 
+
+CREATE TABLE Orders (Order_ID int PRIMARY KEY,  
+   
+ Order_Num int NOT NULL,  
+   
+ Person_ID int,  
+    
+ FOREIGN KEY (Person_ID) REFERENCES Persons2(Person_ID)  
+
+ );   
+
+
+insert into Persons2 values(1,'john',30,'london'),
+ 
+                          (2,'david',35,'paris'),
+                           
+                          (3,'roman',40,'tokiyo');
+
+insert into Orders values(4, 555, 1),
+                         
+                         (5, 666, 2),
+                         
+                         (6, 777, 3);
+
+insert into Orders(Order_ID,Order_Num) values (8, 1522);  
+
+select * from Persons2;
+
+select * from Orders;
+
+update Orders set Person_ID = 9 where Order_ID=4;
+
+update Orders set Person_ID = 3, Order_Num =777 where Order_ID=1;
+
+delete from Orders where Order_ID=4;
+
+delete from Orders where Person_ID=1;
+
+delete from Orders order by Order_ID Desc limit 2;
+
+select Order_ID,Order_Num,Person_ID from Orders;
+
+select Order_ID,Order_Num,Person_ID from Orders where Order_ID=5;
+
+select * from Orders where Person_ID in(1,1);
+
+select * from Orders Group by Person_ID;
+
+
+
+
+
+
+
+
+
