@@ -236,6 +236,204 @@ select * from Orders where Person_ID in(1,1);
 
 select * from Orders Group by Person_ID;
 
+-----------------------------------------------------------------------------------------------
+
+
+select * from Orders;
+
+select * from Orders where Order_ID > 2 AND Person_ID  = 3;
+
+select * from Orders;
+
+select * from Orders where Order_ID = 2 OR Person_ID  = 2;
+
+select * from Orders;
+
+select * from Orders where (Order_ID > 2 AND Person_ID > 3) OR Order_Num = 111;
+
+
+select distinct Person_ID from Orders;
+
+select * from Orders order by Order_Num DESC;
+
+select * from Orders order by Order_Num ASC;
+
+select *,count(*) from Orders Group by Person_ID;
+
+select *, sum(Order_Num) from Orders Group by Person_ID;
+
+select * from Orders;
+
+select *, Min(Order_Num) from Orders Group by Person_ID;
+
+select * from Orders;
+
+select *, Min(Order_Num) as Minimum_Order_num from Orders Group by Person_ID;
+
+select * from Orders;
+
+select *, Max(Order_Num) as Minimum_Order_num from Orders Group by Person_ID;
+
+select * , SUM(Order_Num) from Orders where Order_ID>=2 Group by Person_ID having Order_Num > 222;
+
+
+SELECT IF(200>150,1,0);
+
+select *, SUM(Order_Num) from Orders where Order_ID>=2 Group by Person_ID having Order_Num >= 222;
+
+
+SELECT IFNULL(NULL,5);
+
+SELECT IFNULL(3,4);
+
+CREATE TABLE table1(
+   
+    num_values int);
+
+   INSERT INTO table1(num_values)
+  
+   VALUES(10), (20), (25);
+
+CREATE TABLE table2(
+   
+   num_val int);
+   
+   INSERT INTO table2(num_val)
+   
+   VALUES(10), (20), (25);
+
+select num_val from table1 where num_val > any(select num_val from table2);
+
+select * from cus_table where name in('john','rock','david');
+
+select * from cus_table where name Not in('john','rock','david');
+
+--------------------------------------------------------------------
+
+CREATE TABLE officers(
+officerId int PRIMARY KEY,
+
+                     officerName varchar(20) NOT NULL,
+                     
+address varchar(20)
+);
+
+CREATE TABLE student(
+studentId int PRIMARY KEY,
+
+                     studentName varchar(20) NOT NULL,
+                     
+courseName varchar(20)
+);
+
+select * from officers;
+
+select * from student;
+
+insert into officers values(1, 'rohan', 'delhi'),
+
+		           (2, 'amit', 'mumbai'),
+    
+                           (3, 'rahul', 'pune'),
+                         
+                           (4, 'john', 'nagpur');
+
+insert into student values(1, 'aryan', 'java'),
+
+			(2, 'om', 'python'),
+						
+                        (3, 'yug', 'cpp'),
+						
+                        (4, 'sahil', 'sql'),
+                        
+                        (5, 'rohit', 'html'); 
+
+select * from officers;
+
+select * from student;    
+
+desc officers;
+
+desc student;  
+
+SELECT officers.officerId, officers.officerName, officers.address, student.studentId, student.studentName, student.courseName
+from officers
+ 
+INNER JOIN student
+ 
+ON officers.officerId = student.studentId;
+
+UPDATE `employeedb`.`student` SET `studentId` = '6' WHERE (`studentId` = '4');
+
+UPDATE `employeedb`.`student` SET `studentId` = '6' WHERE (`studentId` = '5');
+
+select * from officers;
+
+select * from student;  
+
+ SELECT officers.officerId, officers.officerName, officers.address, student.studentId, student.studentName, student.courseName
+ from officers
+ LEFT JOIN student
+ ON 
+ officers.officerId = student.studentId;
+
+SELECT officers.officerId, officers.officerName, officers.address, student.studentId, student.studentName, student.courseName
+ from officers
+ 
+ RIGHT JOIN student
+ 
+ ON officers.officerId = student.studentId;
+
+ SELECT officers.officerId, officers.officerName, officers.address, student.studentId, student.studentName, student.courseName
+  from officers
+ 
+FULL JOIN student
+ 
+ON officers.officerId = student.studentId;
+
+select * from officers
+ 
+LEFT JOIN student 
+ON officers.officerId=student.studentId
+UNION
+
+select * from officers
+
+RIGHT JOIN student 
+ON officers.officerId=student.studentId;
+
+START TRANSACTION;
+
+
+insert into officers values(7,'ankit','wardha');
+
+insert into officers values(8,'nehal','banglore');
+
+commit;
+
+rollback;
+
+select * from officers
+
+START TRANSACTION;
+insert into officers values(9,'shinjo','tokiyo');
+
+select * from officers;
+
+SAVEPOINT insert_record;
+update officers set officerName= 'smith' where officerId=9;
+
+insert into officers values(10,'nobita','japan');
+
+select * from officers;
+
+ROLLBACK TO SAVEPOINT insert_record;
+
+rollback;
+
+
+
+
 
 
 
